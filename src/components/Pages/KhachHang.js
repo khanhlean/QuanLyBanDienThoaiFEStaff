@@ -57,7 +57,7 @@ const SinhVien = () => {
         try {
             const token = localStorage.getItem('token');
             const response = await API.post(
-                '/khachhang/themkhachhang',
+                '/khachhang/them-khach-hang',
                 {
                     Ho: addHo,
                     Ten: addTen,
@@ -248,14 +248,8 @@ const SinhVien = () => {
                                 </div>
                                 {selectedKhachHang && (
                                     <div>
-                                        <div
-                                            className="show-watch-form-overlay position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
-                                            style={{ background: 'rgba(0,0,0,0.5)', zIndex: 1000 }}
-                                        >
-                                            <div
-                                                className="show-watch-form-container bg-white rounded shadow position-relative"
-                                                style={{ width: '500px', maxWidth: '90%' }}
-                                            >
+                                        <div className="show-watch-form-overlay">
+                                            <div className="show-watch-form-container">
                                                 <button
                                                     className="btn-close position-absolute"
                                                     style={{ top: '15px', right: '15px' }}
@@ -264,107 +258,101 @@ const SinhVien = () => {
                                                         setIsEditing(false);
                                                     }}
                                                 ></button>
-
-                                                <div
-                                                    className="text-center border-bottom py-3  position-absolute"
-                                                    style={{ top: '15px' }}
-                                                >
-                                                    <h2 className="text-uppercase fw-bold mb-0">
-                                                        Thông Tin Khách Hàng
-                                                    </h2>
+                                                <h2>Thông Tin Khách Hàng</h2>
+                                                <div class="image-container">
+                                                    {/* <img
+                                                        src={urlImg + selectedWatch.HinhAnh}
+                                                        alt={selectedWatch.TenDT}
+                                                        className="scaled-img"
+                                                    /> */}
                                                 </div>
-
-                                                <div className="p-4">
-                                                    <form>
+                                                <form>
+                                                    {isEditing ? (
+                                                        <div className="mb-3">
+                                                            <input
+                                                                type="text"
+                                                                className="form-control mb-3"
+                                                                value={editedHo}
+                                                                onChange={(e) => setEditedHo(e.target.value)}
+                                                                placeholder="Họ"
+                                                            />
+                                                            <input
+                                                                type="text"
+                                                                className="form-control mb-3"
+                                                                value={editedTen}
+                                                                onChange={(e) => setEditedTen(e.target.value)}
+                                                                placeholder="Tên"
+                                                            />
+                                                            <input
+                                                                type="text"
+                                                                className="form-control mb-3"
+                                                                value={editedDiaChi}
+                                                                onChange={(e) => setEditedDiaChi(e.target.value)}
+                                                                placeholder="Địa chỉ"
+                                                            />
+                                                            <input
+                                                                type="text"
+                                                                className="form-control mb-3"
+                                                                value={editedSDT}
+                                                                onChange={(e) => setEditedSDT(e.target.value)}
+                                                                placeholder="Số điện thoại"
+                                                            />
+                                                            <input
+                                                                type="text"
+                                                                className="form-control mb-3"
+                                                                value={editedEmail}
+                                                                onChange={(e) => setEditedEmail(e.target.value)}
+                                                                placeholder="Email"
+                                                            />
+                                                        </div>
+                                                    ) : (
+                                                        <div className="card border-0">
+                                                            <div className="card-body p-0">
+                                                                <p className="card-text py-2 border-bottom">
+                                                                    <strong>Họ:</strong> {selectedKhachHang.Ho}
+                                                                </p>
+                                                                <p className="card-text py-2 border-bottom">
+                                                                    <strong>Tên:</strong> {selectedKhachHang.Ten}
+                                                                </p>
+                                                                <p className="card-text py-2 border-bottom">
+                                                                    <strong>Địa Chỉ:</strong> {selectedKhachHang.DiaChi}
+                                                                </p>
+                                                                <p className="card-text py-2 border-bottom">
+                                                                    <strong>SĐT:</strong> {selectedKhachHang.SDT}
+                                                                </p>
+                                                                <p className="card-text py-2">
+                                                                    <strong>Email:</strong> {selectedKhachHang.Email}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                    <div className="d-flex justify-content-end gap-2 mt-4">
                                                         {isEditing ? (
-                                                            <div className="mb-3">
-                                                                <input
-                                                                    type="text"
-                                                                    className="form-control mb-3"
-                                                                    value={editedHo}
-                                                                    onChange={(e) => setEditedHo(e.target.value)}
-                                                                    placeholder="Họ"
-                                                                />
-                                                                <input
-                                                                    type="text"
-                                                                    className="form-control mb-3"
-                                                                    value={editedTen}
-                                                                    onChange={(e) => setEditedTen(e.target.value)}
-                                                                    placeholder="Tên"
-                                                                />
-                                                                <input
-                                                                    type="text"
-                                                                    className="form-control mb-3"
-                                                                    value={editedDiaChi}
-                                                                    onChange={(e) => setEditedDiaChi(e.target.value)}
-                                                                    placeholder="Địa chỉ"
-                                                                />
-                                                                <input
-                                                                    type="text"
-                                                                    className="form-control mb-3"
-                                                                    value={editedSDT}
-                                                                    onChange={(e) => setEditedSDT(e.target.value)}
-                                                                    placeholder="Số điện thoại"
-                                                                />
-                                                                <input
-                                                                    type="text"
-                                                                    className="form-control mb-3"
-                                                                    value={editedEmail}
-                                                                    onChange={(e) => setEditedEmail(e.target.value)}
-                                                                    placeholder="Email"
-                                                                />
-                                                            </div>
-                                                        ) : (
-                                                            <div className="card border-0">
-                                                                <div className="card-body p-0">
-                                                                    <p className="card-text py-2 border-bottom">
-                                                                        <strong>Họ:</strong> {selectedKhachHang.Ho}
-                                                                    </p>
-                                                                    <p className="card-text py-2 border-bottom">
-                                                                        <strong>Tên:</strong> {selectedKhachHang.Ten}
-                                                                    </p>
-                                                                    <p className="card-text py-2 border-bottom">
-                                                                        <strong>Địa Chỉ:</strong>{' '}
-                                                                        {selectedKhachHang.DiaChi}
-                                                                    </p>
-                                                                    <p className="card-text py-2 border-bottom">
-                                                                        <strong>SĐT:</strong> {selectedKhachHang.SDT}
-                                                                    </p>
-                                                                    <p className="card-text py-2">
-                                                                        <strong>Email:</strong>{' '}
-                                                                        {selectedKhachHang.Email}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        )}
-                                                        <div className="d-flex justify-content-end gap-2 mt-4">
-                                                            {isEditing ? (
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn btn-success"
-                                                                    onClick={handleSaveClick}
-                                                                >
-                                                                    Lưu
-                                                                </button>
-                                                            ) : (
-                                                                <button
-                                                                    type="button"
-                                                                    className="btn btn-primary"
-                                                                    onClick={handleEditClick}
-                                                                >
-                                                                    Sửa
-                                                                </button>
-                                                            )}
                                                             <button
                                                                 type="button"
-                                                                className="btn btn-danger"
-                                                                onClick={handleDeleteKhachHang}
+                                                                className="btn btn-success"
+                                                                onClick={handleSaveClick}
                                                             >
-                                                                Xóa
+                                                                Lưu
                                                             </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
+                                                        ) : (
+                                                            <button
+                                                                type="button"
+                                                                className="edit-button"
+                                                                onClick={handleEditClick}
+                                                            >
+                                                                Sửa
+                                                            </button>
+                                                        )}
+                                                        <button
+                                                            type="button"
+                                                            className="delete-button"
+                                                            onClick={handleDeleteKhachHang}
+                                                        >
+                                                            Xóa
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
