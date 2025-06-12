@@ -1,4 +1,4 @@
-import './GiangVien.scss';
+import './DienThoai.scss';
 
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
@@ -263,47 +263,11 @@ const Hang = () => {
                                             />
                                             <input
                                                 type="text"
-                                                placeholder="Giá"
+                                                placeholder="Mô tả"
                                                 value={addGia}
                                                 onChange={(e) => setaddGia(e.target.value)}
                                             />
-                                            <input
-                                                type="text"
-                                                placeholder="Số Lượng"
-                                                value={addSoLuong}
-                                                onChange={(e) => setaddSoLuong(e.target.value)}
-                                            />
-
-                                            <input
-                                                type="text"
-                                                placeholder="Mô Tả"
-                                                value={addMoTa}
-                                                onChange={(e) => setaddMoTa(e.target.value)}
-                                            />
-                                            <select
-                                                id="lineComboBox"
-                                                value={addLoai}
-                                                onChange={(e) => setaddLoai(e.target.value)}
-                                            >
-                                                {loai.map((loai) => (
-                                                    <option key={loai.id} value={loai.TenLoai}>
-                                                        Loại: {loai.TenLoai}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            <select
-                                                id="lineComboBox"
-                                                value={addHang}
-                                                onChange={(e) => setaddHang(e.target.value)}
-                                            >
-                                                {hang.map((hang) => (
-                                                    <option key={hang._MaHang} value={hang.TenHang}>
-                                                        Hãng: {hang.TenHang}
-                                                    </option>
-                                                ))}
-                                            </select>
                                             {/* <input type="file" id="fileInput" /> */}
-
                                             <button className="add-button" onClick={handleAddGiangVien}>
                                                 <span>Xác Nhận</span>
                                             </button>
@@ -329,11 +293,11 @@ const Hang = () => {
                                                 </button>
                                                 <h2>Thông Tin Điện Thoại</h2>
                                                 <div class="image-container">
-                                                    <img
+                                                    {/* <img
                                                         src={urlImg + selectedWatch.HinhAnh}
                                                         alt={selectedWatch.TenDT}
                                                         className="scaled-img"
-                                                    />
+                                                    /> */}
                                                 </div>
                                                 <form>
                                                     {isEditing ? (
@@ -344,40 +308,17 @@ const Hang = () => {
                                                                 onChange={(e) => setEditedName(e.target.value)}
                                                             />
 
-                                                            <select
-                                                                id="hocViComboBox"
-                                                                value={editedHocVi}
-                                                                onChange={(e) => setEditedHocVi(e.target.value)}
-                                                            >
-                                                                <option value="Kỹ Sư">Kỹ Sư</option>
-                                                                <option value="Thạc Sĩ">Thạc Sĩ</option>
-                                                                <option value="Tiến Sĩ">Tiến Sĩ</option>
-                                                            </select>
-                                                            <select
-                                                                id="hocHamComboBox"
-                                                                value={editedHocHam}
-                                                                onChange={(e) => setEditedHocHam(e.target.value)}
-                                                            >
-                                                                <option value="Giáo Sư">Giáo Sư</option>
-                                                                <option value="Phó Giáo Sư">Phó Giáo Sư</option>
-                                                            </select>
-
                                                             <input
                                                                 type="text"
                                                                 value={editedQuantity}
                                                                 onChange={(e) => setEditedQuantity(e.target.value)}
                                                             />
-                                                            <input
-                                                                type="text"
-                                                                value={editedType}
-                                                                onChange={(e) => setEditedType(e.target.value)}
-                                                            />
                                                         </>
                                                     ) : (
                                                         <>
-                                                            <p className="text">Tên: {selectedWatch.TenDT}</p>
-                                                            <p className="text">Giá: {selectedWatch.Gia}$</p>
-                                                            <p className="text">Số Lượng: {selectedWatch.SoLuong}</p>
+                                                            <p className="text">Tên: {selectedWatch.TenHang}</p>
+                                                            {/* <p className="text">Giá: {selectedWatch.Gia}$</p> */}
+                                                            {/* <p className="text">Số Lượng: {selectedWatch.SoLuong}</p> */}
                                                             <p className="text">Mô Tả: {selectedWatch.MoTa}</p>
                                                         </>
                                                     )}

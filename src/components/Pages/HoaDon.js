@@ -1,4 +1,4 @@
-import './Loptinchi.scss';
+import './HoaDon.scss';
 import React, { useState, useEffect } from 'react';
 import API from '@/services/api';
 import Sidebar from '@/components/DefaultLayout/Sidebar/SidebarGV';
@@ -7,38 +7,11 @@ import { DataGrid } from '@mui/x-data-grid';
 
 const LopTinChi = () => {
     const [watches, setWatches] = useState([]);
-    const [phong, setPhong] = useState([]);
-    const [monhoc, setMonHoc] = useState([]);
-    const [LH, setLH] = useState([]);
-    const [LHPH, setLHPH] = useState([]);
-    const [showAddForm, setShowAddForm] = useState(false);
     const [selectedWatch, setSelectedWatch] = useState(null);
-    const [selectedLHvaPhong, setSelectedLHvaPhong] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
-    const [showLHPH, setshowLHPH] = useState(false);
-
-    const [editedNamHoc, setEditedNamHoc] = useState(null);
-    const [editedSLToiDa, setEditedSLToiDa] = useState(null);
-    const [editedHocKi, setEditedHocKi] = useState(null);
-    const [editedNgayBD, setEditedNgayBD] = useState(null);
-    const [editedNgayKT, setEditedNgayKT] = useState(null);
-    const [editedMaMH, setEditedMaMH] = useState(null);
-
-    const [LHId, setLHId] = useState(null);
-    const [phongId, setPhongId] = useState(null);
-    const [MHId, setMHId] = useState(null);
 
     useEffect(() => {
-        if (selectedWatch) {
-            setEditedNamHoc(selectedWatch.NamHoc);
-            setEditedSLToiDa(selectedWatch.SLToiDa);
-            setEditedHocKi(selectedWatch.HocKi);
-            setEditedNgayBD(selectedWatch.NgayBD);
-            setEditedNgayKT(selectedWatch.NgayKT);
-            setEditedMaMH(selectedWatch.MaMH);
-        }
         fetchData();
-        //fetchMonHoc();
     }, [selectedWatch]);
 
     async function fetchData() {
@@ -50,6 +23,9 @@ const LopTinChi = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
+
+            console.log(response.data);
+
             setWatches(response.data);
         } catch (error) {
             console.error(error);
@@ -57,84 +33,11 @@ const LopTinChi = () => {
         }
     }
 
-    async function fetchLH() {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await API.get(`/loptinchi/hienThiLichHocChuaCoTrongLopTinChi/${selectedWatch.id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setLH(response.data.lichHocChuaCo);
-        } catch (error) {
-            console.error(error);
-            // Xử lý lỗi
-        }
-    }
-
-    async function fetchPhong() {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await API.get(`/loptinchi/hienThiPhongHocChuaCoTrongLopTinChi/${selectedWatch.id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setPhong(response.data.phongHocChuaCo);
-        } catch (error) {
-            console.error(error);
-            // Xử lý lỗi
-        }
-    }
-
-    async function fetchMonHoc() {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await API.get(`/monhoc/getallmonhoc`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setMonHoc(response.data.monhoc);
-        } catch (error) {
-            console.error(error);
-            // Xử lý lỗi
-        }
-    }
-
-    const handleDeletePHLH = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await API.post(
-                '/loptinchi/xoaLichHocVaPhongHoc',
-                {
-                    MaLTC: selectedWatch.id,
-                    MaTGB: selectedLHvaPhong.MaTGB,
-                    MaPhongHoc: selectedLHvaPhong.MaPhongHoc,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                },
-            );
-            console.log(response.status);
-            if (response.status === 200) {
-            } else {
-                // console.log(response.data.error);
-                // setErrorMessage(response.data.error); // Gán thông báo lỗi vào state
-            }
-        } catch (error) {
-            console.log('Lỗi khi gọi API:', error);
-        }
-        handleLH();
-    };
-
     const columns = [
         { field: 'MaHD', headerName: 'Ma Hóa Đơn', flex: 1 },
         { field: 'NgayTaoHD', headerName: 'Ngày Tạo Hóa Đơn', flex: 1 },
         { field: 'TongTien', headerName: 'Tổng Tiền', flex: 1 },
-        { field: 'MaPD', headerName: 'Mã Phiếu Đặt', flex: 1 },
+        // { field: 'MaPD', headerName: 'Mã Phiếu Đặt', flex: 1 },
     ];
 
     const rows = watches.map((watch) => ({
@@ -143,6 +46,9 @@ const LopTinChi = () => {
         NgayTaoHD: watch.NgayTaoHD.substring(0, 10),
         TongTien: watch.TongTien,
         MaPD: watch.MaPD,
+        Ten: watch.Ten,
+        DiaChi: watch.DiaChi,
+        SDT: watch.SDT,
     }));
 
     const handleRowClick = (params) => {
@@ -157,41 +63,8 @@ const LopTinChi = () => {
         { field: 'Buoi', headerName: 'Buổi', width: 170 },
     ];
 
-    const rowsLHvaPhong = LHPH.map((lhph) => ({
-        id: lhph.MaTGB,
-        MaTGB: lhph.MaTGB,
-        Thu: lhph.Thu,
-        Buoi: lhph.Buoi,
-        MaPhongHoc: lhph.MaPhongHoc,
-    }));
-
-    const handleRowClickLHvaPhong = (params) => {
-        // Lấy thông tin đồng hồ từ hàng được bấm
-        const selectedRow = params.row;
-        setSelectedLHvaPhong(selectedRow);
-    };
-
     //xử lý editing
     const handleIn = () => {};
-
-    const handleLH = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await API.get(`/loptinchi/hienThiLichHocVaPhongHocCuaLopTinChi/${selectedWatch.id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            console.log(response.data.success);
-            setLHPH(response.data.lichHocPhongHoc);
-        } catch (error) {
-            console.error(error);
-            // Xử lý lỗi
-        }
-        fetchLH();
-        fetchPhong();
-        setshowLHPH(true);
-    };
 
     const handleDeleteWatch = async () => {
         const token = localStorage.getItem('token');
@@ -250,8 +123,12 @@ const LopTinChi = () => {
                                                 <form>
                                                     <p className="text">Mã Hóa Đơn: {selectedWatch.MaHD}</p>
                                                     <p className="text">Ngày Tạo Hóa Đơn: {selectedWatch.NgayTaoHD}</p>
+                                                    <p className="text">Tên người đặt: {selectedWatch.Ten}</p>
+                                                    <p className="text">Địa chỉ: {selectedWatch.DiaChi}</p>
+                                                    <p className="text">Số điện thoại: {selectedWatch.SDT}</p>
+                                                    <p className="text">Sản phẩm: Iphone 14 Pro</p>
+                                                    <p className="text">Quà tặng kèm: AirPod </p>
                                                     <p className="text">Tổng Tiền: {selectedWatch.TongTien}</p>
-                                                    <p className="text">Mã Phiếu Đặt: {selectedWatch.MaPD}</p>
 
                                                     <div className="btn-container">
                                                         <button
@@ -275,11 +152,7 @@ const LopTinChi = () => {
                                         </div>
                                     </div>
                                 )}
-                                <div className="pl_section__header">
-                                    {/* <button className="add-watch-button" onClick={() => setShowAddForm(true)}>
-                                        THÊM LỚP TÍN CHỈ
-                                    </button> */}
-                                </div>
+                                <div className="pl_section__header"></div>
                             </section>
                         </div>
                     </div>

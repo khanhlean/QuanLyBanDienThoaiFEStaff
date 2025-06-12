@@ -238,7 +238,7 @@ class MiniDrawer extends React.Component {
                                     >
                                         <AssignmentIndOutlinedIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="Giảng Viên" sx={{ opacity: open ? 1 : 0 }} />
+                                    <ListItemText primary="Điện thoại" sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>
                             </ListItem>
 
@@ -260,73 +260,7 @@ class MiniDrawer extends React.Component {
                                     >
                                         <AccountBoxIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="Sinh Viên" sx={{ opacity: open ? 1 : 0 }} />
-                                </ListItemButton>
-                            </ListItem>
-
-                            <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
-                                <ListItemButton
-                                    onClick={this.handleLoai}
-                                    sx={{
-                                        minHeight: 48,
-                                        justifyContent: open ? 'initial' : 'center',
-                                        px: 2.5,
-                                    }}
-                                >
-                                    <ListItemIcon
-                                        sx={{
-                                            minWidth: 0,
-                                            mr: open ? 3 : 'auto',
-                                            justifyContent: 'center',
-                                        }}
-                                    >
-                                        <FormatListBulletedIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Sinh Viên" sx={{ opacity: open ? 1 : 0 }} />
-                                </ListItemButton>
-                            </ListItem>
-
-                            <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
-                                <ListItemButton
-                                    onClick={this.handleHang}
-                                    sx={{
-                                        minHeight: 48,
-                                        justifyContent: open ? 'initial' : 'center',
-                                        px: 2.5,
-                                    }}
-                                >
-                                    <ListItemIcon
-                                        sx={{
-                                            minWidth: 0,
-                                            mr: open ? 3 : 'auto',
-                                            justifyContent: 'center',
-                                        }}
-                                    >
-                                        <BrandingWatermarkIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Sinh Viên" sx={{ opacity: open ? 1 : 0 }} />
-                                </ListItemButton>
-                            </ListItem>
-
-                            <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
-                                <ListItemButton
-                                    onClick={this.handleLine}
-                                    sx={{
-                                        minHeight: 48,
-                                        justifyContent: open ? 'initial' : 'center',
-                                        px: 2.5,
-                                    }}
-                                >
-                                    <ListItemIcon
-                                        sx={{
-                                            minWidth: 0,
-                                            mr: open ? 3 : 'auto',
-                                            justifyContent: 'center',
-                                        }}
-                                    >
-                                        <ClassOutlinedIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary="Lớp Tín Chỉ" sx={{ opacity: open ? 1 : 0 }} />
+                                    <ListItemText primary="Khách hàng" sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>
                             </ListItem>
 
@@ -348,7 +282,117 @@ class MiniDrawer extends React.Component {
                                     >
                                         <AttachMoneyIcon />
                                     </ListItemIcon>
-                                    <ListItemText primary="Môn Học" sx={{ opacity: open ? 1 : 0 }} />
+                                    <ListItemText primary="Mã giảm giá" sx={{ opacity: open ? 1 : 0 }} />
+                                </ListItemButton>
+                            </ListItem>
+
+                            <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
+                                <ListItemButton
+                                    onClick={this.handleOrder}
+                                    sx={{
+                                        minHeight: 48,
+                                        justifyContent: open ? 'initial' : 'center',
+                                        px: 2.5,
+                                    }}
+                                >
+                                    <ListItemIcon
+                                        sx={{
+                                            minWidth: 0,
+                                            mr: open ? 3 : 'auto',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        <AttachMoneyIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Quà tặng" sx={{ opacity: open ? 1 : 0 }} />
+                                </ListItemButton>
+                            </ListItem>
+
+                            <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
+                                <ListItemButton
+                                    onClick={this.handleLoai}
+                                    sx={{
+                                        minHeight: 48,
+                                        justifyContent: open ? 'initial' : 'center',
+                                        px: 2.5,
+                                    }}
+                                >
+                                    <ListItemIcon
+                                        sx={{
+                                            minWidth: 0,
+                                            mr: open ? 3 : 'auto',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        <FormatListBulletedIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Loại" sx={{ opacity: open ? 1 : 0 }} />
+                                </ListItemButton>
+                            </ListItem>
+
+                            <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
+                                <ListItemButton
+                                    onClick={this.handleHang}
+                                    sx={{
+                                        minHeight: 48,
+                                        justifyContent: open ? 'initial' : 'center',
+                                        px: 2.5,
+                                    }}
+                                >
+                                    <ListItemIcon
+                                        sx={{
+                                            minWidth: 0,
+                                            mr: open ? 3 : 'auto',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        <BrandingWatermarkIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Hãng" sx={{ opacity: open ? 1 : 0 }} />
+                                </ListItemButton>
+                            </ListItem>
+
+                            <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
+                                <ListItemButton
+                                    onClick={this.handleLine}
+                                    sx={{
+                                        minHeight: 48,
+                                        justifyContent: open ? 'initial' : 'center',
+                                        px: 2.5,
+                                    }}
+                                >
+                                    <ListItemIcon
+                                        sx={{
+                                            minWidth: 0,
+                                            mr: open ? 3 : 'auto',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        <ClassOutlinedIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Phiếu đặt" sx={{ opacity: open ? 1 : 0 }} />
+                                </ListItemButton>
+                            </ListItem>
+
+                            <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
+                                <ListItemButton
+                                    onClick={this.handleOrder}
+                                    sx={{
+                                        minHeight: 48,
+                                        justifyContent: open ? 'initial' : 'center',
+                                        px: 2.5,
+                                    }}
+                                >
+                                    <ListItemIcon
+                                        sx={{
+                                            minWidth: 0,
+                                            mr: open ? 3 : 'auto',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        <AttachMoneyIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Hoá đơn" sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>
                             </ListItem>
 

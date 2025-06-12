@@ -1,4 +1,4 @@
-import './MonHoc.scss';
+import './PhieuDat.scss';
 import React, { useState, useEffect } from 'react';
 import API from '@/services/api';
 import Sidebar from '@/components/DefaultLayout/Sidebar/SidebarGV';
@@ -243,7 +243,7 @@ const MonHoc = () => {
                                                         <p className="text">
                                                             Mã Nhân Viên Duyệt: {selectedWatch.MaNVDuyet}
                                                         </p>
-                                                        <select
+                                                        {/* <select
                                                             value={addLoai}
                                                             onChange={(e) => setaddLoai(e.target.value)}
                                                         >
@@ -262,7 +262,7 @@ const MonHoc = () => {
                                                                     Đến ngày: {loai.a}
                                                                 </option>
                                                             ))}
-                                                        </select>
+                                                        </select> */}
                                                     </>
 
                                                     <div className="btn-container">
