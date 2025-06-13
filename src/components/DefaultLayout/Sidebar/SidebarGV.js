@@ -30,6 +30,8 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import PercentIcon from '@mui/icons-material/Percent';
 import { withRouter } from 'react-router-dom';
 import './Sidebar.scss';
 
@@ -145,6 +147,16 @@ class MiniDrawer extends React.Component {
 
     handleOrder = () => {
         this.props.history.push('/hoadon');
+        window.location.reload();
+    };
+
+    handleGift = () => {
+        this.props.history.push('/quatang');
+        window.location.reload();
+    };
+
+    handleVoucher = () => {
+        this.props.history.push('/voucher');
         window.location.reload();
     };
 
@@ -266,7 +278,7 @@ class MiniDrawer extends React.Component {
 
                             <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
                                 <ListItemButton
-                                    onClick={this.handleOrder}
+                                    onClick={this.handleVoucher}
                                     sx={{
                                         minHeight: 48,
                                         justifyContent: open ? 'initial' : 'center',
@@ -280,7 +292,7 @@ class MiniDrawer extends React.Component {
                                             justifyContent: 'center',
                                         }}
                                     >
-                                        <AttachMoneyIcon />
+                                        <PercentIcon />
                                     </ListItemIcon>
                                     <ListItemText primary="Mã giảm giá" sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>
@@ -288,7 +300,7 @@ class MiniDrawer extends React.Component {
 
                             <ListItem key="Watch" disablePadding sx={{ display: 'block' }}>
                                 <ListItemButton
-                                    onClick={this.handleOrder}
+                                    onClick={this.handleGift}
                                     sx={{
                                         minHeight: 48,
                                         justifyContent: open ? 'initial' : 'center',
@@ -302,7 +314,7 @@ class MiniDrawer extends React.Component {
                                             justifyContent: 'center',
                                         }}
                                     >
-                                        <AttachMoneyIcon />
+                                        <CardGiftcardIcon />
                                     </ListItemIcon>
                                     <ListItemText primary="Quà tặng" sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>

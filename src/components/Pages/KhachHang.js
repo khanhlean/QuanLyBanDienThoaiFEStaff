@@ -7,7 +7,7 @@ import Sidebar from '@/components/DefaultLayout/Sidebar/SidebarGV';
 import CloseIcon from '@mui/icons-material/Close';
 import { DataGrid } from '@mui/x-data-grid';
 
-const SinhVien = () => {
+const KhachHang = () => {
     const [khachHangs, setKhachHangs] = useState([]);
     const [showAddForm, setShowAddForm] = useState(false);
     const [selectedKhachHang, setSelectedKhachHang] = useState(null);
@@ -371,4 +371,4 @@ const SinhVien = () => {
     );
 };
 
-export default SinhVien;
+export default KhachHang;
